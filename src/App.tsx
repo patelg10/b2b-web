@@ -21,10 +21,11 @@ function HomePage() {
         title="BEST SELLERS" 
         subtitle="The most sought-after devices, certified and restored to their former glory." 
       />
-      <section className="bg-surface-container-low py-12">
+      <section className="bg-black py-12">
         <MerchandiseSection 
           title="PRECISION PARTS" 
           subtitle="Certified original replacement parts for retailers and master technicians." 
+          isDark
         />
       </section>
       <BlogAndNewsletter />

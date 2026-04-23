@@ -5,23 +5,23 @@ const BENEFITS = [
   {
     title: "Lifetime warranty",
     subtitle: "on repair parts",
-    icon: <ShieldCheck className="w-8 h-8 text-red-600" />,
-    bgColor: "bg-red-50",
-    iconBg: "bg-red-100/50"
+    icon: <ShieldCheck className="w-8 h-8 text-black" />,
+    bgColor: "bg-primary",
+    iconBg: "bg-white/40"
   },
   {
     title: "Retail ready",
     subtitle: "accessories",
-    icon: <Cable className="w-8 h-8 text-green-600" />,
-    bgColor: "bg-green-50",
-    iconBg: "bg-green-100/50"
+    icon: <Cable className="w-8 h-8 text-white" />,
+    bgColor: "bg-black",
+    iconBg: "bg-white/10"
   },
   {
     title: "Tools & supplies",
     subtitle: "for your business",
-    icon: <Wrench className="w-8 h-8 text-orange-600" />,
-    bgColor: "bg-orange-50",
-    iconBg: "bg-orange-100/50"
+    icon: <Wrench className="w-8 h-8 text-primary" />,
+    bgColor: "bg-gray-100",
+    iconBg: "bg-white"
   }
 ];
 

@@ -9,10 +9,10 @@
   --color-surface: #ffffff;
   --color-surface-container-low: #f8f9fa;
   --color-surface-container-lowest: #ffffff;
-  --color-on-surface: #1a1a1a;
+  --color-on-surface: #000000;
   --color-accent-hover: #fffbe6;
 
-  --shadow-ambient: 0 20px 40px rgba(0, 0, 0, 0.05);
+  --shadow-ambient: 0 30px 60px rgba(0, 0, 0, 0.08);
 }
 
 @layer base {
@@ -44,5 +44,13 @@
 
   .register-input {
     @apply w-full h-14 bg-white rounded-2xl px-6 text-sm focus:ring-2 focus:ring-primary outline-none border-none shadow-sm transition-all;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

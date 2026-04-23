@@ -23,17 +23,17 @@ export default function MegaMenu({ brand, onClose }: MegaMenuProps) {
     >
       <div className="max-w-7xl mx-auto flex h-[520px]">
         {/* Left Sidebar: Categories */}
-        <div className="w-[320px] bg-surface-container-low border-r border-on-surface/5 p-8 flex flex-col">
+        <div className="w-[320px] bg-black border-r border-white/5 p-8 flex flex-col">
            <div className="relative mb-8">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 opacity-30" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white opacity-30" />
               <input 
                 type="text" 
                 placeholder={`Search ${brand.brand}...`} 
-                className="w-full bg-white rounded-full py-2.5 pl-10 pr-4 text-xs border-none outline-none focus:ring-1 focus:ring-primary shadow-sm"
+                className="w-full bg-white/5 text-white rounded-full py-2.5 pl-10 pr-4 text-xs border-none outline-none focus:ring-1 focus:ring-primary shadow-sm placeholder:text-white/20"
               />
            </div>
            
-           <h4 className="text-[10px] font-black uppercase tracking-[2px] opacity-40 px-4 mb-4">Main Categories</h4>
+           <h4 className="text-[10px] font-black uppercase tracking-[2px] text-white/40 px-4 mb-4">Main Categories</h4>
            
            <nav className="space-y-1 overflow-y-auto no-scrollbar flex-1">
              {brand.categories.map((cat, idx) => (
@@ -43,7 +43,7 @@ export default function MegaMenu({ brand, onClose }: MegaMenuProps) {
                  className={`w-full text-left px-4 py-3.5 rounded-xl text-sm font-bold transition-all flex items-center justify-between group ${
                    activeCategoryIdx === idx 
                    ? "bg-primary text-black shadow-lg" 
-                   : "text-on-surface opacity-60 hover:opacity-100 hover:bg-white hover:shadow-sm"
+                   : "text-white/60 hover:text-white hover:bg-white/5"
                  }`}
                >
                  {cat.name}
@@ -63,7 +63,7 @@ export default function MegaMenu({ brand, onClose }: MegaMenuProps) {
             <Link 
               to={`/category/${activeCategory?.name.toLowerCase().replace(/\s+/g, '-')}`} 
               onClick={onClose}
-              className="text-xs font-bold uppercase tracking-widest text-black border-b-2 border-black/10 hover:border-black transition-all pb-1 h-fit"
+              className="text-xs font-black uppercase tracking-widest text-[#FFF100] border-b-2 border-primary/20 hover:border-primary transition-all pb-1 h-fit"
             >
               View Full Range
             </Link>
@@ -84,7 +84,7 @@ export default function MegaMenu({ brand, onClose }: MegaMenuProps) {
                     key={item.name}
                     to={`/category/${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                     onClick={onClose}
-                    className="group flex items-center gap-3 py-1.5 transition-all text-on-surface hover:text-black border-b border-transparent"
+                    className="group flex items-center gap-3 py-1.5 transition-all text-on-surface hover:text-[#FFF100] border-b border-transparent"
                   >
                     <span className="text-sm font-semibold tracking-tight opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all">{item.name}</span>
                     {item.isNew && (

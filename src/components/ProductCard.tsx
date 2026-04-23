@@ -27,7 +27,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`group relative ${product.isFeatured ? 'bg-[#e7ffd1]' : 'bg-white'} rounded-[3rem] overflow-hidden transition-all duration-300 hover:shadow-ambient border border-gray-100 flex flex-col h-full`}
+      className={`group relative ${product.isFeatured ? 'bg-[#fffde7]' : 'bg-white'} rounded-[3rem] overflow-hidden transition-all duration-300 hover:shadow-ambient border border-gray-100 flex flex-col h-full`}
     >
       {/* Badge Section */}
       <div className="absolute top-4 left-4 z-10">
@@ -44,7 +44,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       </div>
 
       {/* Product Image */}
-      <Link to={`/product/${product.id}`} className="relative block aspect-square overflow-hidden p-8 transition-colors">
+      <Link to={`/product/${product.id}`} className="relative block aspect-[4/3] overflow-hidden p-10 transition-colors">
         <img 
           src={product.image} 
           alt={product.name} 
@@ -55,17 +55,17 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
       {/* Color/Variant Label */}
       {product.colorLabel && (
-        <div className="px-6">
-            <div className="bg-black text-white text-[10px] font-black py-1.5 px-4 rounded-sm text-center uppercase tracking-widest shadow-sm">
+        <div className="px-8 flex justify-center mt-[-20px] relative z-20">
+            <div className="bg-black text-white text-[10px] font-black py-1.5 px-6 rounded-sm text-center uppercase tracking-widest shadow-lg">
                 {product.colorLabel}
             </div>
         </div>
       )}
 
       {/* Product Info */}
-      <div className="flex-1 p-6 flex flex-col items-center text-center space-y-3">
+      <div className="flex-1 p-8 flex flex-col items-center text-center space-y-4">
         <Link to={`/product/${product.id}`} className="block">
-          <h3 className="font-bold text-[13px] leading-snug tracking-tight text-on-surface hover:text-[#FF3333] transition-colors line-clamp-3">
+          <h3 className="font-bold text-[14px] leading-snug tracking-tight text-on-surface hover:text-[#df2020] transition-colors line-clamp-2">
             {product.name}
           </h3>
         </Link>
@@ -92,7 +92,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                <input type="text" value="0" className="w-12 bg-transparent text-center text-xs font-black outline-none border-none pointer-events-none" readOnly />
                <button className="w-8 h-8 rounded-full hover:bg-white transition-colors flex items-center justify-center font-bold">+</button>
             </div>
-            <button className="w-full h-12 bg-[#2e7d32] text-white rounded-full font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-green-900/10 active:scale-95">
+            <button className="w-full h-12 bg-primary text-black rounded-full font-black text-xs uppercase tracking-widest hover:brightness-105 transition-all shadow-lg active:scale-95">
                 Pre-Order
             </button>
           </div>
@@ -101,9 +101,9 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               <input 
                 type="email" 
                 placeholder="Enter your Email" 
-                className="w-full bg-white border border-gray-200 rounded-full px-5 py-2.5 text-xs font-medium outline-none focus:ring-1 focus:ring-[#FF3333] placeholder:text-on-surface/30"
+                className="w-full bg-white border border-gray-200 rounded-full px-5 py-2.5 text-xs font-medium outline-none focus:ring-1 focus:ring-primary placeholder:text-on-surface/30"
               />
-              <button className="w-full h-12 bg-[#df2020] text-white rounded-full font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-red-900/10 active:scale-95">
+              <button className="w-full h-12 bg-primary text-black rounded-full font-black text-xs uppercase tracking-widest hover:brightness-105 transition-all shadow-lg active:scale-95">
                   Notify Me
               </button>
           </div>
