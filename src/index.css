@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Helvetica Neue", "Arial", sans-serif;
+
+  --color-primary: #735c00;
+  --color-surface: #fff8f0;
+  --color-surface-container-low: #fcf3e1;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface: #1f1b11;
+  --color-accent-hover: #ffe083;
+
+  --shadow-ambient: 0 32px 64px rgba(115, 92, 0, 0.15);
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-on-surface;
+  }
+}
+
+@layer components {
+  .glass-header {
+    @apply bg-surface/70 backdrop-blur-[30px];
+  }
+  
+  .pill-button {
+    @apply rounded-full px-8 py-3 transition-all duration-300 font-semibold text-sm;
+  }
+
+  .pill-button-primary {
+    @apply rounded-full px-8 py-3 transition-all duration-300 font-semibold text-sm bg-primary text-white hover:opacity-90;
+  }
+
+  .pill-button-outline {
+    @apply rounded-full px-8 py-3 transition-all duration-300 font-semibold text-sm border-2 border-primary text-primary hover:bg-primary hover:text-white;
+  }
+
+  .register-input {
+    @apply w-full h-14 bg-white rounded-2xl px-6 text-sm focus:ring-2 focus:ring-primary outline-none border-none shadow-sm transition-all;
+  }
+}
