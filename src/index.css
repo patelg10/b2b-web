@@ -39,7 +39,7 @@
   }
 
   .pill-button-outline {
-    @apply rounded-full px-8 py-3 transition-all duration-300 font-semibold text-sm border-2 border-primary text-primary hover:bg-primary hover:text-white;
+    @apply rounded-full px-8 py-3 transition-all duration-300 font-semibold text-sm border-2 border-primary text-black hover:bg-primary;
   }
 
   .register-input {

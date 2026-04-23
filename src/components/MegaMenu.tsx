@@ -63,7 +63,7 @@ export default function MegaMenu({ brand, onClose }: MegaMenuProps) {
             <Link 
               to={`/category/${activeCategory?.name.toLowerCase().replace(/\s+/g, '-')}`} 
               onClick={onClose}
-              className="text-xs font-bold uppercase tracking-widest text-primary border-b-2 border-primary/20 hover:border-primary transition-all pb-1 h-fit"
+              className="text-xs font-bold uppercase tracking-widest text-black border-b-2 border-black/10 hover:border-black transition-all pb-1 h-fit"
             >
               View Full Range
             </Link>
@@ -84,11 +84,11 @@ export default function MegaMenu({ brand, onClose }: MegaMenuProps) {
                     key={item.name}
                     to={`/category/${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                     onClick={onClose}
-                    className="group flex items-center gap-3 py-1.5 transition-all text-on-surface hover:text-primary border-b border-transparent hover:border-primary/10"
+                    className="group flex items-center gap-3 py-1.5 transition-all text-on-surface hover:text-black border-b border-transparent"
                   >
                     <span className="text-sm font-semibold tracking-tight opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all">{item.name}</span>
                     {item.isNew && (
-                      <span className="bg-primary/10 text-primary text-[8px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">New</span>
+                      <span className="bg-primary text-black text-[8px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">New</span>
                     )}
                   </Link>
                 ))}

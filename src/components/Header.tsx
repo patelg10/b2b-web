@@ -22,7 +22,7 @@ export default function Header() {
             className="bg-transparent border-none focus:ring-0 w-full text-sm placeholder:text-on-surface/30"
           />
           <div className="h-6 w-px bg-on-surface opacity-10 mx-2" />
-          <Link to="/login" className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest hover:text-primary transition-colors">
+          <Link to="/login" className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest hover:opacity-70 transition-all">
             <User className="w-3.5 h-3.5" />
             <span>Login</span>
           </Link>
@@ -47,9 +47,9 @@ export default function Header() {
           
           <motion.button 
             whileHover={{ scale: 1.05 }}
-            className="relative p-2 text-on-surface hover:text-primary transition-colors"
+            className="relative p-2 text-on-surface hover:opacity-70 transition-all group"
           >
-            <ShoppingBag className="w-6 h-6" />
+            <ShoppingBag className="w-6 h-6 group-hover:text-black transition-colors" />
             <div className="absolute top-0 right-0 w-4 h-4 bg-primary text-black text-[9px] font-black flex items-center justify-center rounded-full shadow-sm ring-2 ring-white">
               0
             </div>

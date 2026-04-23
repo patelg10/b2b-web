@@ -9,7 +9,7 @@ export default function BlogAndNewsletter() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           <div className="lg:col-span-5 space-y-8">
             <h2 className="text-5xl font-extrabold tracking-tighter leading-none">
-              THE <span className="text-primary italic">RESTORED</span> <br /> JOURNAL
+              THE <span className="relative">RESTORED<span className="absolute bottom-1 left-0 w-full h-[30%] bg-primary -z-10 opacity-30"></span></span> <br /> JOURNAL
             </h2>
             <p className="text-on-surface/60 max-w-sm leading-relaxed">
               Insights into the circular economy, repair guides, and the latest in sustainable tech.
@@ -47,10 +47,10 @@ export default function BlogAndNewsletter() {
                     referrerPolicy="no-referrer"
                   />
                 </div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">
+                <span className="text-[10px] font-black uppercase tracking-widest text-black/40 mb-2 block border-l-2 border-primary pl-2">
                   {post.category}
                 </span>
-                <h3 className="text-2xl font-bold group-hover:text-primary transition-colors pr-8">
+                <h3 className="text-2xl font-bold group-hover:underline transition-all pr-8">
                   {post.title}
                 </h3>
               </motion.div>
@@ -62,11 +62,14 @@ export default function BlogAndNewsletter() {
       {/* Newsletter Section */}
       <section className="bg-surface-container-low py-32 rounded-[4rem] mx-6">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-12">
-          <div className="inline-flex p-4 bg-primary/10 rounded-full mb-4">
-            <Mail className="w-8 h-8 text-primary" />
+          <div className="inline-flex p-4 bg-primary rounded-full mb-4 shadow-lg shadow-primary/20">
+            <Mail className="w-8 h-8 text-black" />
           </div>
           <h2 className="text-5xl md:text-6xl font-extrabold tracking-tighter leading-none">
-            JOIN THE <span className="text-primary">TECH</span> CIRCLE.
+            JOIN THE <span className="relative inline-block">
+              TECH
+              <span className="absolute bottom-2 left-0 w-full h-[25%] bg-primary -z-10"></span>
+            </span> CIRCLE.
           </h2>
           <p className="text-xl text-on-surface/50 max-w-2xl mx-auto">
             Get exclusive early access to premium inventory arrivals and sustainability insights.

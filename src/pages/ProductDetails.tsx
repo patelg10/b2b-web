@@ -58,19 +58,19 @@ export default function ProductDetailsPage() {
         {/* Right: Info (5 cols) */}
         <div className="lg:col-span-5 space-y-8">
           <div>
-            <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-[10px] font-bold tracking-widest uppercase mb-4">
+            <div className="inline-block px-3 py-1 bg-primary text-black rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 shadow-sm">
               {product.tag}
             </div>
             <h1 className="text-5xl font-extrabold tracking-[-3px] leading-none mb-4 uppercase">
               {product.name}
             </h1>
             <div className="flex items-center gap-6">
-              <p className="text-4xl font-bold text-primary">
+              <p className="text-4xl font-bold text-black border-b-4 border-primary pb-1">
                 {product.price}
               </p>
               <div className="h-6 w-px bg-on-surface/10" />
               <div className="flex items-center gap-1">
-                <div className="flex items-center gap-0.5 text-primary">
+                <div className="flex items-center gap-0.5 text-black opacity-80">
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className="text-lg">★</span>
                   ))}

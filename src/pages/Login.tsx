@@ -19,7 +19,7 @@ export default function LoginPage() {
         <div className="space-y-6">
           {/* Google Login */}
           <button className="w-full h-14 bg-white border border-on-surface/5 rounded-full flex items-center justify-center gap-3 font-semibold text-sm hover:bg-surface-container-lowest transition-all hover:shadow-sm">
-            <Chrome className="w-5 h-5 text-primary" />
+            <Chrome className="w-5 h-5 text-black" />
             Sign in with Google
           </button>
 
@@ -32,7 +32,7 @@ export default function LoginPage() {
           {/* Regular Login */}
           <div className="space-y-4">
             <div className="relative group">
-              <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 opacity-40 group-focus-within:text-primary group-focus-within:opacity-100 transition-all" />
+              <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 opacity-40 group-focus-within:text-black group-focus-within:opacity-100 transition-all" />
               <input 
                 type="email" 
                 placeholder="Email Address"
@@ -40,7 +40,7 @@ export default function LoginPage() {
               />
             </div>
             <div className="relative group">
-              <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 opacity-40 group-focus-within:text-primary group-focus-within:opacity-100 transition-all" />
+              <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 opacity-40 group-focus-within:text-black group-focus-within:opacity-100 transition-all" />
               <input 
                 type="password" 
                 placeholder="Password"
@@ -50,7 +50,7 @@ export default function LoginPage() {
           </div>
 
           <div className="flex justify-end">
-            <a href="#" className="text-xs font-bold uppercase tracking-widest text-primary hover:opacity-70">Forgot Password?</a>
+            <a href="#" className="text-xs font-bold uppercase tracking-widest text-black/60 hover:text-black hover:underline">Forgot Password?</a>
           </div>
 
           <button className="pill-button-primary w-full h-14 flex items-center justify-center gap-2 text-sm uppercase tracking-widest leading-none">
@@ -60,7 +60,7 @@ export default function LoginPage() {
 
           <p className="text-center text-xs font-medium text-on-surface opacity-60 mt-8">
             Don't have an account?{" "}
-            <Link to="/register" className="text-primary font-bold hover:underline">Create Account</Link>
+            <Link to="/register" className="text-black font-bold hover:underline">Create Account</Link>
           </p>
         </div>
       </motion.div>

@@ -51,9 +51,9 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         </div>
       </div>
 
-      {/* Add Button Bar (Reference styled as blue bar) */}
-      <button className="w-full h-12 bg-[#2a4596] text-white flex items-center justify-center hover:bg-[#1e3271] transition-colors group/btn">
-        <div className="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center group-hover/btn:scale-110 transition-transform">
+      {/* Add Button Bar (Reference styled as yellow bar now) */}
+      <button className="w-full h-12 bg-primary text-black flex items-center justify-center hover:brightness-95 transition-all group/btn">
+        <div className="w-6 h-6 rounded-full border-2 border-black flex items-center justify-center group-hover/btn:scale-110 transition-transform">
           <Plus className="w-4 h-4 stroke-[3px]" />
         </div>
       </button>

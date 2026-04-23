@@ -26,7 +26,7 @@ export default function BrandNav() {
               <Link 
                 to={`/category/${brandData.brand.toLowerCase().replace(" ", "-")}`}
                 className={`text-[11px] font-black tracking-[1.5px] uppercase transition-all duration-300 py-3 block border-b-2 ${
-                  activeBrandIdx === index ? "text-primary border-primary" : "text-on-surface opacity-60 border-transparent hover:opacity-100"
+                  activeBrandIdx === index ? "text-black border-primary opacity-100" : "text-on-surface opacity-50 border-transparent hover:opacity-100"
                 }`}
               >
                 {brandData.brand}
@@ -40,7 +40,7 @@ export default function BrandNav() {
             transition={{ delay: 0.3 }}
             className="flex-shrink-0"
           >
-            <Link to="/category/parts" className="text-[11px] font-black tracking-[1.5px] uppercase text-on-surface opacity-60 hover:opacity-100 transition-all py-3 block hover:text-primary">
+            <Link to="/category/parts" className="text-[11px] font-black tracking-[1.5px] uppercase text-on-surface opacity-50 transition-all py-3 block hover:text-black hover:opacity-100">
               Genuine Parts
             </Link>
           </motion.li>
@@ -51,7 +51,7 @@ export default function BrandNav() {
             transition={{ delay: 0.35 }}
             className="flex-shrink-0"
           >
-            <Link to="/category/accessories" className="text-[11px] font-black tracking-[1.5px] uppercase text-on-surface opacity-60 hover:opacity-100 transition-all py-3 block hover:text-primary">
+            <Link to="/category/accessories" className="text-[11px] font-black tracking-[1.5px] uppercase text-on-surface opacity-50 transition-all py-3 block hover:text-black hover:opacity-100">
               Accessories
             </Link>
           </motion.li>
