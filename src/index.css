@@ -13,6 +13,8 @@
   --color-accent-hover: #fffbe6;
 
   --shadow-ambient: 0 30px 60px rgba(0, 0, 0, 0.08);
+
+  --animate-spin-slow: spin 8s linear infinite;
 }
 
 @layer base {

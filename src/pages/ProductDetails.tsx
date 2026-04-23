@@ -3,10 +3,12 @@ import { motion } from "motion/react";
 import { ShoppingBag, ChevronRight, Share2, Heart, ShieldCheck, Truck, RefreshCcw } from "lucide-react";
 import MerchandiseSection from "../components/MerchandiseSection";
 import { MOCK_PRODUCTS } from "../data";
+import { useCart } from "../context/CartContext";
 
 export default function ProductDetailsPage() {
   const product = MOCK_PRODUCTS[0]; // Just showing the first one for the demo
   const [activeImage, setActiveImage] = useState(0);
+  const { addToCart } = useCart();
 
   const images = [
     product.image,
@@ -98,7 +100,10 @@ export default function ProductDetailsPage() {
           </div>
 
           <div className="flex gap-4 pt-8">
-            <button className="pill-button-primary flex-1 h-16 flex items-center justify-center gap-3 text-sm uppercase tracking-widest">
+            <button 
+              onClick={() => addToCart(product)}
+              className="pill-button-primary flex-1 h-16 flex items-center justify-center gap-3 text-sm uppercase tracking-widest"
+            >
               <ShoppingBag className="w-5 h-5" />
               Add to Cart
             </button>

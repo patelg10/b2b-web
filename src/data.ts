@@ -91,10 +91,19 @@ export const MEGA_MENU_DATA: MegaMenuBrand[] = [
       {
         name: "iPhone",
         items: [
-          { name: "iPhone 15 Pro", isNew: true },
-          { name: "iPhone 15", isNew: true },
+          { name: "iPhone 16e", isNew: true },
+          { name: "iPhone 16 Pro Max", isNew: true },
+          { name: "iPhone 16 Pro", isNew: true },
+          { name: "iPhone 16 Plus", isNew: true },
+          { name: "iPhone 16", isNew: true },
+          { name: "iPhone 15 Pro Max" },
+          { name: "iPhone 15 Pro" },
+          { name: "iPhone 15" },
+          { name: "iPhone 15 Plus" },
           { name: "iPhone 14 Pro Max" },
+          { name: "iPhone 14 Pro" },
           { name: "iPhone 14" },
+          { name: "iPhone 14 Plus" },
           { name: "iPhone 13 Pro Max" },
           { name: "iPhone 13 Pro" },
           { name: "iPhone 13" },
@@ -115,29 +124,51 @@ export const MEGA_MENU_DATA: MegaMenuBrand[] = [
       {
         name: "iPad",
         items: [
-          { name: "iPad Pro 12.9", isNew: true },
-          { name: "iPad Pro 11", isNew: true },
+          { name: "iPad Pro 12.9\" 5th Gen (2021)", isNew: true },
+          { name: "iPad Pro 12.9\" 4th Gen (2020)" },
+          { name: "iPad Pro 12.9\" 3rd Gen (2018)" },
+          { name: "iPad Pro 12.9\" 2nd Gen (2017)" },
+          { name: "iPad Pro 12.9\" 1st Gen (2015)" },
+          { name: "iPad Pro 11\" 3rd Gen (2021)" },
           { name: "iPad Air (5th Gen)" },
+          { name: "iPad Air (4th Gen)" },
           { name: "iPad (10th Gen)" },
+          { name: "iPad (9th Gen)" },
           { name: "iPad mini (6th Gen)" }
         ]
       },
       {
         name: "Watch",
         items: [
-          { name: "Apple Watch Ultra 2", isNew: true },
-          { name: "Apple Watch Series 9", isNew: true },
-          { name: "Apple Watch SE" }
+          { name: "Series Ultra (1st Gen) (49MM)", isNew: true },
+          { name: "Series 8 (45MM)", isNew: true },
+          { name: "Series 8 (41MM)", isNew: true },
+          { name: "Series SE (2nd Gen) (44MM)" },
+          { name: "Series SE (2nd Gen) (40MM)" },
+          { name: "Series 7 (45MM)" },
+          { name: "Series 7 (41MM)" },
+          { name: "Series 6 (44MM)" }
         ]
       },
       {
-        name: "Mac",
+        name: "Galaxy S Series",
         items: [
-          { name: "MacBook Pro 14\"", isNew: true },
-          { name: "MacBook Pro 16\"", isNew: true },
-          { name: "MacBook Air 13\"", isNew: true },
-          { name: "MacBook Air 15\"", isNew: true },
-          { name: "iMac 24\"", isNew: true }
+          { name: "Galaxy S24 Ultra 5G", isNew: true },
+          { name: "Galaxy S24 Plus 5G", isNew: true },
+          { name: "Galaxy S24 5G", isNew: true },
+          { name: "Galaxy S23 Ultra 5G" },
+          { name: "Galaxy S23 Plus 5G" },
+          { name: "Galaxy S23 5G" }
+        ]
+      },
+      {
+        name: "Galaxy Note Series",
+        items: [
+          { name: "Galaxy Note 20 Ultra 5G" },
+          { name: "Galaxy note 20 5G" },
+          { name: "Galaxy Note 10 Plus 5G" },
+          { name: "Galaxy Note 10 Lite" },
+          { name: "Galaxy Note 10" }
         ]
       }
     ]
@@ -146,54 +177,55 @@ export const MEGA_MENU_DATA: MegaMenuBrand[] = [
     brand: "Samsung",
     categories: [
       {
-        name: "Galaxy S Series",
+        name: "S Series",
         items: [
-          { name: "Galaxy S24 Ultra", isNew: true },
-          { name: "Galaxy S24+", isNew: true },
-          { name: "Galaxy S24", isNew: true },
-          { name: "Galaxy S23 Ultra" },
-          { name: "Galaxy S23+" },
-          { name: "Galaxy S23" },
-          { name: "Galaxy S22 Ultra" }
+          { name: "Galaxy S26 Ultra", isNew: true },
+          { name: "Galaxy S26 Plus", isNew: true },
+          { name: "Galaxy S26", isNew: true },
+          { name: "Galaxy S25 FE" },
+          { name: "Galaxy S25 Edge" },
+          { name: "Galaxy S24 Ultra" },
+          { name: "Galaxy S23" }
         ]
       },
       {
-        name: "Galaxy Z Series",
+        name: "Note Series",
         items: [
-          { name: "Galaxy Z Fold5", isNew: true },
-          { name: "Galaxy Z Flip5", isNew: true },
-          { name: "Galaxy Z Fold4" },
-          { name: "Galaxy Z Flip4" }
+          { name: "Galaxy Note 20 Ultra" },
+          { name: "Galaxy Note 20" },
+          { name: "Galaxy Note 10 Plus" },
+          { name: "Galaxy Note 10 Lite" },
+          { name: "Galaxy Note 10" }
         ]
       },
       {
-        name: "Galaxy A Series",
+        name: "J Series",
         items: [
-          { name: "Galaxy A54 5G" },
-          { name: "Galaxy A34 5G" },
-          { name: "Galaxy A14 5G" }
-        ]
-      }
-    ]
-  },
-  {
-    brand: "Google",
-    categories: [
-      {
-        name: "Pixel Phones",
-        items: [
-          { name: "Pixel 8 Pro", isNew: true },
-          { name: "Pixel 8", isNew: true },
-          { name: "Pixel 7 Pro" },
-          { name: "Pixel 7" },
-          { name: "Pixel 7a" },
-          { name: "Pixel 6a" }
+          { name: "J8 Plus (J805 / 2018)" },
+          { name: "J8 (J810 / 2018)" },
+          { name: "J7 Refine (J737 / 2018)" },
+          { name: "J7 Pro (J730 / 2017)" },
+          { name: "J7 Prime (G610 / 2016)" }
         ]
       },
       {
-        name: "Pixel Fold",
+        name: "A Series",
         items: [
-          { name: "Pixel Fold", isNew: true }
+          { name: "A90 5G (A908 /2019)" },
+          { name: "A9 Pro (A910 / 2016)" },
+          { name: "A9 (A920 / 2018)" },
+          { name: "A80 (A805 / 2019)" },
+          { name: "A8 Plus (A730 / 2018)" }
+        ]
+      },
+      {
+        name: "XCover Series",
+        items: [
+          { name: "Galaxy XCover7 Pro" },
+          { name: "Galaxy XCover 7" },
+          { name: "Galaxy XCover 6 Pro" },
+          { name: "Galaxy XCover 5" },
+          { name: "Galaxy XCover 4s" }
         ]
       }
     ]
@@ -202,18 +234,72 @@ export const MEGA_MENU_DATA: MegaMenuBrand[] = [
     brand: "Motorola",
     categories: [
       {
-        name: "Razr Series",
+        name: "Moto G Series",
         items: [
-          { name: "Razr 40 Ultra", isNew: true },
-          { name: "Razr 40", isNew: true }
+          { name: "Moto G17 Power (XT2623 / 2026)", isNew: true },
+          { name: "Moto G17 (XT2623 / 2026)", isNew: true },
+          { name: "Moto G77 (XT2621 / 2026)", isNew: true },
+          { name: "G Power (XT2617 / 2026)", isNew: true },
+          { name: "G Play (XT2615 / 2026)", isNew: true },
+          { name: "G 5G (XT2613 / 2026)", isNew: true }
         ]
       },
       {
-        name: "Edge Series",
+        name: "Moto E Series",
         items: [
-          { name: "Edge 40 Pro" },
-          { name: "Edge 40" },
-          { name: "Edge 30 Ultra" }
+          { name: "E13 (XT2345 / 2023)" },
+          { name: "E40 (XT2159 / 2021)" },
+          { name: "E32S (XT2229 / 2022)" },
+          { name: "E32 (XT2227 / 2022)" },
+          { name: "E30 (XT2158 / 2021)" }
+        ]
+      },
+      {
+        name: "Moto Edge Series",
+        items: [
+          { name: "Edge (XT2519 / 2025)" },
+          { name: "Edge 60 (XT2505 / 2025)" },
+          { name: "Edge 60 Stylus (XT2517-4 / 2025)" },
+          { name: "Edge 60 Pro (XT2507 / 2025)" },
+          { name: "Edge 60 Fusion (XT2503 / 2025)" }
+        ]
+      }
+    ]
+  },
+  {
+    brand: "Google",
+    categories: [
+      {
+        name: "Pixel",
+        items: [
+          { name: "Pixel 10a", isNew: true },
+          { name: "Pixel 10 Pro Fold", isNew: true },
+          { name: "Pixel 10 Pro XL", isNew: true },
+          { name: "Pixel 10 Pro", isNew: true },
+          { name: "Pixel 10", isNew: true },
+          { name: "Pixel 9 Pro XL" },
+          { name: "Pixel 9" }
+        ]
+      }
+    ]
+  },
+  {
+    brand: "Accessories",
+    categories: [
+      {
+        name: "Charging",
+        items: [
+          { name: "Wall Chargers" },
+          { name: "Cables" },
+          { name: "Wireless Pads" }
+        ]
+      },
+      {
+        name: "Audio",
+        items: [
+          { name: "AirPods" },
+          { name: "Earbuds" },
+          { name: "Headphones" }
         ]
       }
     ]

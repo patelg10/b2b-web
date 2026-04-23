@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
-import { Plus } from "lucide-react";
-
+import { Plus, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 export interface Product {
   id: string;
@@ -21,6 +21,12 @@ export interface Product {
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const isInStock = product.inStock !== false;
+  const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+  };
 
   return (
     <motion.div
@@ -65,7 +71,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       {/* Product Info */}
       <div className="flex-1 p-8 flex flex-col items-center text-center space-y-4">
         <Link to={`/product/${product.id}`} className="block">
-          <h3 className="font-bold text-[14px] leading-snug tracking-tight text-on-surface hover:text-[#df2020] transition-colors line-clamp-2">
+          <h3 className="font-bold text-[14px] leading-snug tracking-tight text-on-surface hover:text-black transition-colors line-clamp-2">
             {product.name}
           </h3>
         </Link>
@@ -88,12 +94,30 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         {isInStock ? (
           <div className="space-y-3">
             <div className="flex items-center justify-center p-1 bg-surface-container-low rounded-full border border-gray-100">
-               <button className="w-8 h-8 rounded-full hover:bg-white transition-colors flex items-center justify-center font-bold">-</button>
-               <input type="text" value="0" className="w-12 bg-transparent text-center text-xs font-black outline-none border-none pointer-events-none" readOnly />
-               <button className="w-8 h-8 rounded-full hover:bg-white transition-colors flex items-center justify-center font-bold">+</button>
+               <button 
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                className="w-8 h-8 rounded-full hover:bg-white transition-colors flex items-center justify-center font-bold"
+               >
+                 <Minus className="w-3 h-3" />
+               </button>
+               <input 
+                type="text" 
+                value={quantity} 
+                onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+                className="w-12 bg-transparent text-center text-xs font-black outline-none border-none" 
+               />
+               <button 
+                onClick={() => setQuantity(quantity + 1)}
+                className="w-8 h-8 rounded-full hover:bg-white transition-colors flex items-center justify-center font-bold"
+               >
+                 <Plus className="w-3 h-3" />
+               </button>
             </div>
-            <button className="w-full h-12 bg-primary text-black rounded-full font-black text-xs uppercase tracking-widest hover:brightness-105 transition-all shadow-lg active:scale-95">
-                Pre-Order
+            <button 
+              onClick={handleAddToCart}
+              className="w-full h-12 bg-primary text-black rounded-full font-black text-xs uppercase tracking-widest hover:brightness-105 transition-all shadow-lg active:scale-95"
+            >
+                Add to Cart
             </button>
           </div>
         ) : (
