@@ -47,11 +47,17 @@ export default function Header() {
           
           <motion.button 
             whileHover={{ scale: 1.05 }}
-            className="relative p-2 text-on-surface hover:opacity-70 transition-all group"
+            className="group flex items-center gap-3 bg-surface-container-low hover:bg-white transition-all px-4 py-2 rounded-full ring-1 ring-on-surface/5"
           >
-            <ShoppingBag className="w-6 h-6 group-hover:text-black transition-colors" />
-            <div className="absolute top-0 right-0 w-4 h-4 bg-primary text-black text-[9px] font-black flex items-center justify-center rounded-full shadow-sm ring-2 ring-white">
-              0
+            <div className="relative">
+              <ShoppingBag className="w-5 h-5 text-on-surface opacity-60 group-hover:opacity-100 group-hover:text-black transition-all" />
+              <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary text-black text-[9px] font-black flex items-center justify-center rounded-full shadow-sm ring-2 ring-white">
+                0
+              </div>
+            </div>
+            <div className="flex flex-col items-start leading-none">
+              <span className="text-[9px] font-black uppercase tracking-widest opacity-30">Your Cart</span>
+              <span className="text-[12px] font-bold text-on-surface tracking-tight">£0.00</span>
             </div>
           </motion.button>
         </div>

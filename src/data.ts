@@ -3,51 +3,74 @@ import { Product } from "./components/ProductCard";
 export const MOCK_PRODUCTS: Product[] = [
   {
     id: "1",
-    name: "iPhone 15 Pro",
-    unit: "256GB Platinum Gold",
-    price: "£899.00",
-    tag: "Certified",
-    image: "https://images.unsplash.com/photo-1696426543122-1d573c50978d?q=80&w=600&auto=format&fit=crop"
+    name: "OLED Assembly For iPhone 16e (Genuine OEM)",
+    unit: "Genuine OEM Replacement",
+    price: "£183.12",
+    withoutCorePrice: "£193.45",
+    tag: "Genuine",
+    image: "https://images.unsplash.com/photo-1592434134753-a70baf7979d5?q=80&w=600",
+    colorLabel: "ALL COLORS",
+    badgeType: "genuine",
+    isFeatured: true,
+    inStock: true
   },
   {
     id: "2",
-    name: "Samsung Galaxy S24 Ultra",
-    unit: "Phantom Cream 512GB",
-    price: "£949.00",
-    tag: "Open Box",
-    image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=600&auto=format&fit=crop"
+    name: "Replacement Battery For iPhone 16e (Genuine OEM)",
+    unit: "Genuine OEM Replacement",
+    price: "£38.81",
+    withoutCorePrice: "£38.81",
+    tag: "Battery",
+    image: "https://images.unsplash.com/photo-1610411300760-4966779d7249?q=80&w=600",
+    badgeType: "genuine",
+    inStock: true
   },
   {
     id: "3",
-    name: "Google Pixel 8 Pro",
-    unit: "Obsidian (Renewed)",
-    price: "£699.00",
-    tag: "Best Value",
-    image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=600&auto=format&fit=crop"
+    name: "Charging Port Flex Cable With Board For iPhone 16e (Genuine OEM) (White)",
+    unit: "Genuine OEM Replacement",
+    price: "£55.03",
+    withoutCorePrice: "£55.03",
+    tag: "Flex Cable",
+    image: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?q=80&w=600",
+    colorLabel: "WHITE",
+    badgeType: "genuine",
+    inStock: true
   },
   {
     id: "4",
-    name: "iPhone 14 Plus",
-    unit: "128GB Midnight",
-    price: "£599.00",
-    tag: "Popular",
-    image: "https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?q=80&w=600&auto=format&fit=crop"
+    name: "Earpiece Speaker For iPhone 16e (Genuine OEM)",
+    unit: "Genuine OEM Replacement",
+    price: "£112.42",
+    withoutCorePrice: "£112.42",
+    tag: "Speaker",
+    image: "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=600",
+    badgeType: "genuine",
+    inStock: false
   },
   {
     id: "5",
-    name: "OnePlus 12 Flowy Emerald",
-    unit: "512GB Unlocked",
-    price: "£749.00",
-    tag: "New Arrival",
-    image: "https://images.unsplash.com/photo-1711413813876-b633ec27b14d?q=80&w=600&auto=format&fit=crop"
+    name: "OLED Assembly Without Frame Compatible For Samsung Galaxy S26 Ultra 5G (Refurbished)",
+    unit: "Refurbished Compatible",
+    price: "£149.72",
+    withoutCorePrice: "£160.00",
+    tag: "Refurbished",
+    image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=600",
+    colorLabel: "ALL COLORS",
+    badgeType: "refurb",
+    isFeatured: true,
+    inStock: true
   },
   {
     id: "6",
-    name: "Sony Xperia 1 V",
-    unit: "Black Platinum 256GB",
-    price: "£849.00",
-    tag: "Limited",
-    image: "https://images.unsplash.com/photo-1592890288564-76628a30a657?q=80&w=600&auto=format&fit=crop"
+    name: "Taptic Engine For iPhone 16e (Genuine OEM)",
+    unit: "Genuine OEM Replacement",
+    price: "£112.42",
+    withoutCorePrice: "£112.42",
+    tag: "Vibrator",
+    image: "https://images.unsplash.com/photo-1621330396173-e41b1cafd17f?q=80&w=600",
+    badgeType: "genuine",
+    inStock: false
   }
 ];
 

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import ProductCard from "./ProductCard";
 import { MOCK_PRODUCTS } from "../data";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, List as ListIcon } from "lucide-react";
 
 export default function MerchandiseSection({ title, subtitle }: { title: string; subtitle?: string }) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -19,12 +19,15 @@ export default function MerchandiseSection({ title, subtitle }: { title: string;
   return (
     <section className="py-24 max-w-7xl mx-auto px-10 relative group">
       <div className="flex items-end justify-between mb-12">
-        <div className="flex flex-col">
-          <h3 className="text-[11px] uppercase tracking-[2px] font-black text-gray-400 mb-2">
-            {title}
-          </h3>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-3">
+            <ListIcon className="w-5 h-5 text-[#df2020] stroke-[3px]" />
+            <h3 className="text-lg font-black uppercase tracking-tight text-[#df2020]">
+              {title}
+            </h3>
+          </div>
           {subtitle && (
-            <p className="text-2xl font-black tracking-tight text-on-surface max-w-lg">
+            <p className="text-sm font-medium opacity-50 max-w-lg leading-snug">
               {subtitle}
             </p>
           )}
@@ -50,10 +53,10 @@ export default function MerchandiseSection({ title, subtitle }: { title: string;
       {/* Slider Container */}
       <div 
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8"
+        className="flex gap-8 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8"
       >
         {BEST_SELLERS.map((product) => (
-          <div key={product.id} className="min-w-[280px] w-[280px] snap-start">
+          <div key={product.id} className="min-w-[320px] w-[320px] snap-start">
             <ProductCard product={product} />
           </div>
         ))}
