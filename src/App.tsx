@@ -18,7 +18,6 @@ function HomePage() {
   return (
     <>
       <PromoSlider />
-      <Hero />
       <MerchandiseSection 
         title="BEST SELLERS" 
         subtitle="The most sought-after devices, certified and restored to their former glory." 
