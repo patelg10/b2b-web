@@ -42,7 +42,7 @@ export default function MegaMenu({ brand, onClose }: MegaMenuProps) {
                  onMouseEnter={() => setActiveCategoryIdx(idx)}
                  className={`w-full text-left px-4 py-3.5 rounded-xl text-sm font-bold transition-all flex items-center justify-between group ${
                    activeCategoryIdx === idx 
-                   ? "bg-primary text-white shadow-lg" 
+                   ? "bg-primary text-black shadow-lg" 
                    : "text-on-surface opacity-60 hover:opacity-100 hover:bg-white hover:shadow-sm"
                  }`}
                >

@@ -66,9 +66,9 @@ export default function PromoSlider() {
                  initial={{ opacity: 0, y: 20 }}
                  animate={{ opacity: 1, y: 0 }}
                  transition={{ delay: 0.2 }}
-                 className="inline-flex items-center gap-3 bg-white/80 backdrop-blur rounded-full px-5 py-2 shadow-sm"
+                 className="inline-flex items-center gap-3 bg-white rounded-full px-5 py-2 shadow-sm"
               >
-                <span className="text-[10px] font-black uppercase tracking-widest text-primary">{SLIDES[current].badge}</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#d4c700]">{SLIDES[current].badge}</span>
               </motion.div>
 
               <motion.h2 

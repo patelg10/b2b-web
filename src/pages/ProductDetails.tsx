@@ -89,7 +89,7 @@ export default function ProductDetailsPage() {
             <div className="flex gap-3">
               {["128GB", "256GB", "512GB"].map(s => (
                 <button key={s} className={`px-6 py-3 rounded-full text-xs font-bold transition-all border-2 ${
-                  s === "256GB" ? "bg-primary border-primary text-white shadow-lg" : "bg-white border-on-surface/5 text-on-surface/60 hover:border-primary/20"
+                  s === "256GB" ? "bg-primary border-primary text-black shadow-lg" : "bg-white border-on-surface/5 text-on-surface/60 hover:border-primary/20"
                 }`}>
                   {s}
                 </button>

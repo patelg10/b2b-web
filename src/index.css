@@ -5,14 +5,14 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Helvetica Neue", "Arial", sans-serif;
 
-  --color-primary: #735c00;
-  --color-surface: #fff8f0;
-  --color-surface-container-low: #fcf3e1;
+  --color-primary: #FFF100;
+  --color-surface: #ffffff;
+  --color-surface-container-low: #f8f9fa;
   --color-surface-container-lowest: #ffffff;
-  --color-on-surface: #1f1b11;
-  --color-accent-hover: #ffe083;
+  --color-on-surface: #1a1a1a;
+  --color-accent-hover: #fffbe6;
 
-  --shadow-ambient: 0 32px 64px rgba(115, 92, 0, 0.15);
+  --shadow-ambient: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
 @layer base {
@@ -27,15 +27,15 @@
 
 @layer components {
   .glass-header {
-    @apply bg-surface/70 backdrop-blur-[30px];
+    @apply bg-white/80 backdrop-blur-[30px] border-b border-gray-100;
   }
   
   .pill-button {
-    @apply rounded-full px-8 py-3 transition-all duration-300 font-semibold text-sm;
+    @apply rounded-full px-8 py-3 transition-all duration-300 font-bold text-sm;
   }
 
   .pill-button-primary {
-    @apply rounded-full px-8 py-3 transition-all duration-300 font-semibold text-sm bg-primary text-white hover:opacity-90;
+    @apply rounded-full px-8 py-3 transition-all duration-300 font-bold text-sm bg-primary text-black hover:brightness-95;
   }
 
   .pill-button-outline {

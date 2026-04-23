@@ -12,8 +12,8 @@ export default function CategoryPage() {
       if (sortBy === "name") {
         return a.name.localeCompare(b.name);
       } else {
-        const priceA = parseFloat(a.price.replace("$", ""));
-        const priceB = parseFloat(b.price.replace("$", ""));
+        const priceA = parseFloat(a.price.replace(/[£$,]/g, ""));
+        const priceB = parseFloat(b.price.replace(/[£$,]/g, ""));
         return priceA - priceB;
       }
     });
@@ -45,8 +45,8 @@ export default function CategoryPage() {
             <div className="flex items-center gap-6">
               <span className="text-[12px] font-bold uppercase tracking-widest opacity-40">View As</span>
               <div className="flex gap-2">
-                <button className="p-2 bg-primary text-white rounded-lg shadow-sm"><LayoutGrid className="w-4 h-4" /></button>
-                <button className="p-2 bg-white text-on-surface/40 rounded-lg"><List className="w-4 h-4" /></button>
+                <button className="p-2 bg-primary text-black rounded-lg shadow-sm"><LayoutGrid className="w-4 h-4" /></button>
+                <button className="p-2 bg-white text-on-surface/40 rounded-lg border border-gray-100"><List className="w-4 h-4" /></button>
               </div>
             </div>
 
@@ -102,9 +102,9 @@ function FilterGroup({ title, options }: { title: string; options: string[] }) {
         {options.map((opt) => (
           <label key={opt} className="flex items-center gap-3 cursor-pointer group">
             <div className="relative flex items-center justify-center">
-              <input type="checkbox" className="peer appearance-none w-5 h-5 rounded-lg bg-white shadow-sm border-none checked:bg-primary transition-all" />
+              <input type="checkbox" className="peer appearance-none w-5 h-5 rounded-lg bg-white shadow-sm border border-gray-100 checked:bg-primary transition-all cursor-pointer" />
               <div className="absolute opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none">
-                <div className="w-2 h-2 bg-white rounded-full" />
+                <div className="w-2 h-2 bg-black rounded-full" />
               </div>
             </div>
             <span className="text-sm font-medium text-on-surface opacity-60 group-hover:opacity-100 transition-opacity">
