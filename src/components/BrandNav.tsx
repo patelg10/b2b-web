@@ -1,45 +1,71 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom";
-import { Grid, ChevronDown, Monitor, Smartphone, Watch, Laptop, MoreHorizontal, X, ArrowRight } from "lucide-react";
+import { Grid, ChevronDown, Monitor, Smartphone, Watch, Laptop, MoreHorizontal, X, ArrowRight, Menu, MapPin } from "lucide-react";
 import { MEGA_MENU_DATA } from "../data";
 import MegaMenu from "./MegaMenu";
+import SideMenuDrawer from "./SideMenuDrawer";
 
 export default function BrandNav() {
   const [activeBrandIdx, setActiveBrandIdx] = useState<number | null>(null);
   const [showCatalog, setShowCatalog] = useState(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
 
   return (
     <div 
-      className="bg-surface-container-low h-12 flex items-center relative z-40 border-b border-on-surface/5"
+      className="bg-surface-container-low h-14 flex items-center relative z-40 border-b border-on-surface/5"
       onMouseLeave={() => setActiveBrandIdx(null)}
     >
-      <div className="max-w-7xl mx-auto px-10 w-full">
-        <ul className="flex items-center gap-10">
-          {MEGA_MENU_DATA.map((brandData, index) => (
-            <motion.li 
-              key={brandData.brand}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-              onMouseEnter={() => setActiveBrandIdx(index)}
-              className="flex-shrink-0 h-full flex items-center"
-            >
-              <Link 
-                to={`/category/${brandData.brand.toLowerCase().replace(" ", "-")}`}
-                className={`text-[11px] font-black tracking-[1.5px] uppercase transition-all duration-300 py-3 block border-b-2 ${
-                  activeBrandIdx === index ? "text-black border-primary opacity-100" : "text-on-surface opacity-50 border-transparent hover:opacity-100"
-                }`}
+      <div className="max-w-7xl mx-auto px-10 w-full flex items-center justify-between">
+        <div className="flex items-center gap-10">
+          <button 
+            onClick={() => setIsSideMenuOpen(true)}
+            className="flex items-center gap-3 bg-black text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-black transition-all shadow-lg shadow-black/10"
+          >
+            <Menu className="w-4 h-4" />
+            Menu
+          </button>
+
+          <div className="h-6 w-px bg-black/10" />
+
+          <ul className="flex items-center gap-8">
+            {MEGA_MENU_DATA.map((brandData, index) => (
+              <motion.li 
+                key={brandData.brand}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+                onMouseEnter={() => setActiveBrandIdx(index)}
+                className="flex-shrink-0"
               >
-                {brandData.brand}
-              </Link>
-            </motion.li>
-          ))}
-          
+                <div 
+                  className={`text-[11px] font-black tracking-[1.5px] uppercase transition-all duration-300 py-4 cursor-pointer flex items-center gap-2 group ${
+                    activeBrandIdx === index ? "text-primary opacity-100" : "text-on-surface opacity-50 hover:opacity-100"
+                  }`}
+                >
+                  {brandData.brand}
+                  <ChevronDown className={`w-3 h-3 transition-transform ${activeBrandIdx === index ? 'rotate-180' : 'opacity-30'}`} />
+                </div>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+        
+        <ul className="flex items-center gap-10">
+          <li className="hidden xl:flex items-center gap-6">
+            <div className="flex items-center gap-2">
+               <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+               <span className="text-[9px] font-black opacity-30 uppercase tracking-widest">Live Inventory</span>
+            </div>
+            <div className="flex items-center gap-2">
+               <MapPin className="w-3 h-3 opacity-30" />
+               <span className="text-[9px] font-black opacity-30 uppercase tracking-widest">Global Sourcing</span>
+            </div>
+          </li>
+
           <motion.li 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
             className="flex-shrink-0"
           >
             <Link to="/category/parts" className="text-[11px] font-black tracking-[1.5px] uppercase text-on-surface opacity-50 transition-all py-3 block hover:text-black hover:opacity-100 italic">
@@ -50,7 +76,6 @@ export default function BrandNav() {
           <motion.li 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
             className="flex-shrink-0"
           >
             <Link to="/refurbishing" className="text-[11px] font-black tracking-[1.5px] uppercase text-secondary transition-all py-3 block hover:opacity-100">
@@ -61,23 +86,11 @@ export default function BrandNav() {
           <motion.li 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="flex-shrink-0"
-          >
-            <Link to="/board-components" className="text-[11px] font-black tracking-[1.5px] uppercase text-on-surface opacity-50 transition-all py-3 block hover:text-black hover:opacity-100">
-              Board Components
-            </Link>
-          </motion.li>
-
-          <motion.li 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
             className="flex-shrink-0 ml-auto"
           >
             <button 
               onClick={() => setShowCatalog(true)}
-              className="flex items-center gap-2 bg-primary text-black px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-black hover:text-primary transition-all"
+              className="flex items-center gap-2 bg-primary text-black px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-black hover:text-primary transition-all border border-black/5"
             >
               <Grid className="w-3 h-3" />
               Catalog
@@ -98,9 +111,15 @@ export default function BrandNav() {
           <CatalogOverlay onClose={() => setShowCatalog(false)} />
         )}
       </AnimatePresence>
+
+      <SideMenuDrawer 
+        isOpen={isSideMenuOpen} 
+        onClose={() => setIsSideMenuOpen(false)} 
+      />
     </div>
   );
 }
+
 
 function CatalogOverlay({ onClose }: { onClose: () => void }) {
   return (

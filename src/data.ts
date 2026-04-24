@@ -303,5 +303,93 @@ export const MEGA_MENU_DATA: MegaMenuBrand[] = [
         ]
       }
     ]
+  },
+  {
+    brand: "Game Console",
+    categories: [
+      {
+        name: "PlayStation Parts",
+        items: [
+          { name: "PS5 Controller", isNew: true },
+          { name: "PS5 Laser Lens" },
+          { name: "PS4 Power Supply" },
+          { name: "PS4 HDMI Port" }
+        ]
+      },
+      {
+        name: "Xbox Parts",
+        items: [
+          { name: "Xbox Series X Fan" },
+          { name: "Xbox One S Hub" },
+          { name: "Controller Joysticks" }
+        ]
+      },
+      {
+        name: "Nintendo Switch",
+        items: [
+          { name: "Joy-Con Rail", isNew: true },
+          { name: "Screen Replacement" },
+          { name: "Battery Pack" }
+        ]
+      }
+    ]
+  },
+  {
+    brand: "Tools & Supplies",
+    categories: [
+      {
+        name: "Soldering",
+        items: [
+          { name: "Soldering Stations" },
+          { name: "Hot Air Stations" },
+          { name: "Micro Soldering Vise" }
+        ]
+      },
+      {
+        name: "Screwdrivers",
+        items: [
+          { name: "iFixit Pro Tool Kit" },
+          { name: "Pentalobe Drivers" },
+          { name: "Torx Security Bits" }
+        ]
+      },
+      {
+        name: "Opening Tools",
+        items: [
+          { name: "Suction Cups" },
+          { name: "Spudgers & Picks" },
+          { name: "Heat Guns" }
+        ]
+      }
+    ]
+  },
+  {
+    brand: "Other Parts",
+    categories: [
+      {
+        name: "LG",
+        items: [
+          { name: "Velvet" },
+          { name: "G8X ThinQ" },
+          { name: "V60 ThinQ" }
+        ]
+      },
+      {
+        name: "OnePlus",
+        items: [
+          { name: "OnePlus 12", isNew: true },
+          { name: "OnePlus 11" },
+          { name: "OnePlus Open" }
+        ]
+      },
+      {
+        name: "Xiaomi",
+        items: [
+          { name: "Poco F5" },
+          { name: "Redmi Note 13" },
+          { name: "Mi 13 Ultra" }
+        ]
+      }
+    ]
   }
 ];
