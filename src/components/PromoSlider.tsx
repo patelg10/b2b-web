@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowRight, ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, RefreshCw, Loader2 } from "lucide-react";
+import { fetchBanners, Banner } from "../services/apiService";
 
-const SLIDES = [
+const STATIC_SLIDES = [
   {
     id: 1,
     title: "Pre-owned Google Pixel, Motorola, and OnePlus now in stock!",
@@ -25,65 +26,72 @@ const SLIDES = [
     bgColor: "bg-[#F5F5F7]",
     textColor: "text-black",
     cta: "Shop Genuine Apple Parts",
-    models: ["MacBook Neo", "MacBook Pro M5", "MacBook Air M5", "Studio Display", "iPad Air M4", "iPhone 17e"]
-  },
-  {
-    id: 3,
-    title: "Solder Paste & Flux",
-    subtitle: "AMTECH Advanced SMT Solder Products",
-    description: "Now available at Mobile Sentrix. Professional grade laboratory supplies.",
-    image: "https://images.unsplash.com/photo-1590674000550-937f2863980a?q=80&w=2000",
-    bgColor: "bg-white",
-    textColor: "text-[#4D4D4D]",
-    cta: "Shop Now!",
-    badge: "Applicator tips included!"
-  },
-  {
-    id: 4,
-    title: "The New Shipping Option",
-    subtitle: "Meet dpd",
-    image: "https://images.unsplash.com/photo-1586528116311-ad861f1c4cbe?q=80&w=2000",
-    bgColor: "bg-white",
-    textColor: "text-black",
-    shippingRates: [
-      { name: "DPD NEXT DAY", cost: "£3.99", threshold: "£250", time: "4:00 PM" },
-      { name: "DPD 12PM", cost: "£6.99", threshold: "£500", time: "4:00 PM" },
-      { name: "DPD SATURDAY", cost: "£9.99", threshold: "£750", time: "3:00 PM" }
-    ]
-  },
-  {
-    id: 5,
-    title: "Click & Collect",
-    subtitle: "Now Available",
-    description: "Order online. Pick up and pay in-store same-day and stress-free.",
-    image: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=2000",
-    bgColor: "bg-[#EAEAEA]",
-    textColor: "text-black",
-    cta: "Start using Click & Collect today"
+    features: ["MacBook Neo", "MacBook Pro M5", "MacBook Air M5", "Studio Display"]
   }
 ];
 
 export default function PromoSlider() {
+  const [slides, setSlides] = useState<any[]>(STATIC_SLIDES);
   const [current, setCurrent] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    async function loadData() {
+      setLoading(true);
+      const apiBanners = await fetchBanners();
+      if (apiBanners && apiBanners.length > 0) {
+        const mappedSlides = apiBanners.map(banner => ({
+          id: banner.id,
+          title: banner.title,
+          subtitle: banner.subtitle,
+          description: banner.description,
+          image: banner.image_url,
+          bgColor: banner.styling.bg_color,
+          textColor: banner.styling.text_color,
+          cta: banner.ctas.primary,
+          secondaryCta: banner.ctas.secondary,
+          badge: banner.badge,
+          features: banner.features
+        }));
+        setSlides(mappedSlides);
+      }
+      setLoading(false);
+    }
+    loadData();
+  }, []);
+
+  useEffect(() => {
+    if (loading || slides.length === 0) return;
+
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          setCurrent((c) => (c + 1) % SLIDES.length);
+          setCurrent((c) => (c + 1) % slides.length);
           return 0;
         }
         return prev + 0.4;
       });
     }, 50);
     return () => clearInterval(timer);
-  }, []);
+  }, [loading, slides.length]);
 
-  const next = () => { setCurrent((c) => (c + 1) % SLIDES.length); setProgress(0); };
-  const prev = () => { setCurrent((c) => (c - 1 + SLIDES.length) % SLIDES.length); setProgress(0); };
+  const next = () => { setCurrent((c) => (c + 1) % slides.length); setProgress(0); };
+  const prev = () => { setCurrent((c) => (c - 1 + slides.length) % slides.length); setProgress(0); };
 
-  const slide = SLIDES[current];
+  if (loading) {
+    return (
+      <section className="bg-surface py-6">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="relative h-[500px] w-full rounded-[3.5rem] bg-gray-100 flex items-center justify-center">
+            <Loader2 className="w-10 h-10 animate-spin text-primary" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const slide = slides[current];
 
   return (
     <section className="bg-surface py-6">
@@ -175,36 +183,13 @@ export default function PromoSlider() {
 
                 {/* Right Side Accessories/Features */}
                 <div className="hidden lg:flex flex-col items-end gap-12">
-                   {slide.features && (
+                   {slide.features && slide.features.length > 0 && (
                      <div className="space-y-8 text-right pr-6 border-r-2 border-current/20">
-                       {slide.features.map(f => (
+                       {slide.features.map((f: string) => (
                          <div key={f} className="space-y-1">
                             <p className="text-sm font-black uppercase tracking-wider">{f}</p>
                          </div>
                        ))}
-                     </div>
-                   )}
-
-                   {slide.shippingRates && (
-                     <div className="space-y-4 w-full max-w-xs">
-                        {slide.shippingRates.map(rate => (
-                          <div key={rate.name} className="bg-white/10 backdrop-blur-sm rounded-3xl p-5 border border-black/5 hover:bg-white/20 transition-all group">
-                             <div className="flex justify-between items-start mb-4">
-                                <span className="bg-[#B2002E] text-white text-[8px] font-black px-2 py-0.5 rounded-sm uppercase tracking-widest">{rate.name}</span>
-                                <div className="text-[10px] font-black opacity-30 italic">{rate.time} CUT-OFF</div>
-                             </div>
-                             <div className="flex justify-between items-end">
-                                <div>
-                                   <div className="text-[8px] font-black opacity-40 uppercase tracking-widest mb-1">Shipping Cost</div>
-                                   <div className="text-xl font-black italic">{rate.cost}</div>
-                                </div>
-                                <div className="text-right">
-                                   <div className="text-[8px] font-black opacity-40 uppercase tracking-widest mb-1">Free Over</div>
-                                   <div className="text-xl font-black italic">{rate.threshold}</div>
-                                </div>
-                             </div>
-                          </div>
-                        ))}
                      </div>
                    )}
                 </div>
@@ -213,7 +198,7 @@ export default function PromoSlider() {
               {/* Progress Ring */}
               <div className="absolute bottom-12 right-12 flex items-center gap-8">
                  <div className="flex gap-3">
-                   {SLIDES.map((_, i) => (
+                   {slides.map((_, i) => (
                       <button 
                         key={i} 
                         onClick={() => { setCurrent(i); setProgress(0); }}
@@ -252,3 +237,4 @@ export default function PromoSlider() {
     </section>
   );
 }
+
