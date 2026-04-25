@@ -19,6 +19,45 @@ export interface Banner {
 
 const BASE_URL = '/api';
 
+export async function login(credentials: any): Promise<any> {
+  const response = await fetch(`${BASE_URL}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(credentials),
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message || "Login failed");
+  return data;
+}
+
+export async function register(userData: any): Promise<any> {
+  const response = await fetch(`${BASE_URL}/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userData),
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message || "Registration failed");
+  return data;
+}
+
+export async function logout(token: string): Promise<any> {
+  const response = await fetch(`${BASE_URL}/logout`, {
+    method: "POST",
+    headers: { 
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({}),
+  });
+  
+  if (response.status === 204) return { success: true };
+  
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message || "Logout failed");
+  return data;
+}
+
 export async function fetchBanners(): Promise<Banner[]> {
   try {
     const response = await fetch(`${BASE_URL}/banners`);

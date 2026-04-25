@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, ChevronRight, ArrowLeft, Search, Smartphone, Watch, Laptop, Monitor, MoreHorizontal } from "lucide-react";
+import { X, ChevronRight, ArrowLeft, Search, Smartphone, Watch, Laptop, Monitor, MoreHorizontal, User, LogOut } from "lucide-react";
 import { MEGA_MENU_DATA } from "../data";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 interface SideMenuDrawerProps {
   isOpen: boolean;
@@ -11,6 +12,14 @@ interface SideMenuDrawerProps {
 
 export default function SideMenuDrawer({ isOpen, onClose }: SideMenuDrawerProps) {
   const [activeBrand, setActiveBrand] = useState<number | null>(null);
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    onClose();
+    navigate("/");
+  };
 
   const icons = [Smartphone, Laptop, Monitor, Watch, MoreHorizontal, Smartphone, Laptop, Smartphone];
 
@@ -43,8 +52,49 @@ export default function SideMenuDrawer({ isOpen, onClose }: SideMenuDrawerProps)
               </div>
 
               <div className="p-6">
-                <div className="relative mb-8">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 opacity-40" />
+                {/* User Section in Drawer */}
+                <div className="mb-8 p-6 bg-gray-50 rounded-3xl border border-black/5">
+                  {isAuthenticated ? (
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-sm font-black text-black ring-4 ring-white shadow-lg overflow-hidden">
+                          {user?.first_name?.[0] || 'U'}{user?.last_name?.[0] || ''}
+                        </div>
+                        <div>
+                          <div className="text-sm font-black uppercase tracking-widest leading-none mb-1 text-black">
+                            {user?.first_name || 'User'}
+                          </div>
+                          <Link to="/account" onClick={onClose} className="text-[10px] font-bold opacity-40 hover:opacity-100 transition-opacity uppercase tracking-widest text-black">My Account</Link>
+                        </div>
+                      </div>
+                      <button onClick={handleLogout} className="p-3 hover:bg-red-50 hover:text-red-500 rounded-xl transition-all">
+                        <LogOut className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-4">
+                      <Link 
+                        to="/login" 
+                        onClick={onClose}
+                        className="flex flex-col items-center justify-center p-4 bg-white rounded-2xl border border-black/5 hover:border-primary transition-all"
+                      >
+                        <User className="w-5 h-5 mb-2" />
+                        <span className="text-[10px] font-black uppercase tracking-widest">Login</span>
+                      </Link>
+                      <Link 
+                        to="/register" 
+                        onClick={onClose}
+                        className="flex flex-col items-center justify-center p-4 bg-black text-white rounded-2xl hover:bg-primary hover:text-black transition-all"
+                      >
+                        <User className="w-5 h-5 mb-2" />
+                        <span className="text-[10px] font-black uppercase tracking-widest">Sign Up</span>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+
+                <div className="relative mb-8 px-2">
+                  <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 opacity-40" />
                   <input 
                     type="text" 
                     placeholder="Quick search parts..." 
@@ -52,7 +102,7 @@ export default function SideMenuDrawer({ isOpen, onClose }: SideMenuDrawerProps)
                   />
                 </div>
 
-                <nav className="space-y-2 overflow-y-auto no-scrollbar max-h-[calc(100vh-250px)] pr-2">
+                <nav className="space-y-2 overflow-y-auto no-scrollbar max-h-[calc(100vh-450px)] pr-2 px-2">
                   <div className="text-[10px] font-black uppercase tracking-[3px] opacity-20 mb-4 px-4">Categories</div>
                   {MEGA_MENU_DATA.map((brand, idx) => (
                     <button

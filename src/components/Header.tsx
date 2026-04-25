@@ -2,9 +2,11 @@ import { Search, User, UserPlus, ShoppingBag, PhoneCall, Info } from "lucide-rea
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
   const { cartCount, cartTotal } = useCart();
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 bg-black border-b border-white/10 w-full shadow-2xl">
@@ -25,14 +27,30 @@ export default function Header() {
             className="bg-transparent border-none focus:ring-0 w-full text-sm placeholder:text-white/20 text-white"
           />
           <div className="h-6 w-px bg-white/10 mx-2" />
-          <Link to="/account" className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-all whitespace-nowrap">
-            <User className="w-3.5 h-3.5" />
-            <span>Account</span>
-          </Link>
+          {isAuthenticated ? (
+            <Link to="/account" className="flex items-center gap-3 bg-white/10 px-4 py-2 rounded-full hover:bg-white/20 transition-all border border-white/5 group">
+              <div className="w-8 h-8 bg-primary text-black rounded-full flex items-center justify-center text-[10px] font-black group-hover:scale-110 transition-transform">
+                {user?.first_name?.[0] || 'U'}{user?.last_name?.[0] || ''}
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white">My Account</span>
+            </Link>
+          ) : (
+            <div className="flex items-center gap-4">
+              <Link to="/login" className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-all whitespace-nowrap">
+                <User className="w-3.5 h-3.5" />
+                <span>Login</span>
+              </Link>
+              <div className="h-4 w-px bg-white/20" />
+              <Link to="/register" className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-all whitespace-nowrap">
+                <UserPlus className="w-3.5 h-3.5" />
+                <span>Sign Up</span>
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* Right: Utility & Cart */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4 lg:gap-8">
           <nav className="hidden lg:flex items-center gap-6 text-[10px] font-black uppercase tracking-[2px] opacity-40 text-white">
             <a href="/contact" className="flex items-center gap-1.5 hover:opacity-100 transition-opacity">
               <PhoneCall className="w-3.5 h-3.5" />
@@ -43,11 +61,16 @@ export default function Header() {
               About
             </a>
           </nav>
+
+          {/* Mobile Account Icon */}
+          <Link to={isAuthenticated ? "/account" : "/login"} className="md:hidden text-white/60 hover:text-white transition-all p-2">
+            <User className="w-5 h-5" />
+          </Link>
           
           <Link to="/cart">
             <motion.button 
               whileHover={{ scale: 1.05 }}
-              className="group flex items-center gap-3 bg-primary text-black transition-all px-4 py-2 rounded-full shadow-lg"
+              className="group flex items-center gap-2 lg:gap-3 bg-primary text-black transition-all px-3 lg:px-4 py-2 rounded-full shadow-lg"
             >
               <div className="relative">
                 <ShoppingBag className="w-5 h-5 text-black" />

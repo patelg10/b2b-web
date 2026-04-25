@@ -19,6 +19,7 @@ import OrderSuccessPage, { OrderErrorPage } from "./pages/Status";
 import PromoSlider from "./components/PromoSlider";
 import MainCategorySlider from "./components/MainCategorySlider";
 import { CartProvider } from "./context/CartContext";
+import { AuthProvider } from "./context/AuthContext";
 
 function HomePage() {
   return (
@@ -43,24 +44,26 @@ function HomePage() {
 
 export default function App() {
   return (
-    <CartProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/category/:id" element={<CategoryPage />} />
-            <Route path="/product/:id" element={<ProductDetailsPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/account" element={<AccountPage />} />
-            <Route path="/order/:id" element={<OrderDetailsPage />} />
-            <Route path="/success" element={<OrderSuccessPage />} />
-            <Route path="/error" element={<OrderErrorPage />} />
-          </Routes>
-        </Layout>
-      </Router>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/category/:id" element={<CategoryPage />} />
+              <Route path="/product/:id" element={<ProductDetailsPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/account" element={<AccountPage />} />
+              <Route path="/order/:id" element={<OrderDetailsPage />} />
+              <Route path="/success" element={<OrderSuccessPage />} />
+              <Route path="/error" element={<OrderErrorPage />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
 }

@@ -13,6 +13,78 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // API Proxy Route to handle login
+  app.post("/api/login", express.json(), async (req, res) => {
+    try {
+      const BASE_URL = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      const response = await fetch(`${BASE_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body),
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error) {
+      console.error("Login proxy error:", error);
+      res.status(500).json({ error: "Login failed" });
+    }
+  });
+
+  // API Proxy Route to handle registration
+  app.post("/api/register", express.json(), async (req, res) => {
+    try {
+      const BASE_URL = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      const response = await fetch(`${BASE_URL}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body),
+      });
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } catch (error) {
+      console.error("Register proxy error:", error);
+      res.status(500).json({ error: "Registration failed" });
+    }
+  });
+
+  // API Proxy Route to handle logout
+  app.post("/api/logout", express.json(), async (req, res) => {
+    try {
+      const BASE_URL = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      const authHeader = req.headers.authorization;
+      
+      const response = await fetch(`${BASE_URL}/logout`, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          ...(authHeader ? { "Authorization": authHeader } : {})
+        },
+        body: JSON.stringify(req.body),
+      });
+      
+      if (response.status === 204 || response.status === 200) {
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          const data = await response.json();
+          return res.status(response.status).json(data);
+        } else {
+          return res.status(response.status).json({ success: true });
+        }
+      }
+      
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        const data = await response.json();
+        res.status(response.status).json(data);
+      } else {
+        res.status(response.status).json({ error: "Logout failed with unexpected response format" });
+      }
+    } catch (error) {
+      console.error("Logout proxy error:", error);
+      res.status(500).json({ error: "Logout failed" });
+    }
+  });
+
   // API Proxy Route to bypass Mixed Content/CORS
   app.get("/api/banners", async (req, res) => {
     try {

@@ -1,24 +1,45 @@
 import React, { useState } from "react";
-import { User, ShoppingBag, MapPin, LogOut, ChevronRight, Package, Calendar, Settings, Plus, X } from "lucide-react";
+import { User as UserIcon, ShoppingBag, MapPin, LogOut, ChevronRight, Package, Calendar, Settings, Plus, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { logout as logoutApi } from "../services/apiService";
 
 type Tab = "profile" | "orders" | "addresses";
 
 export default function AccountPage() {
   const [activeTab, setActiveTab] = useState<Tab>("profile");
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleSignout = () => {
-    // Mock signout
+  const handleSignout = async () => {
+    if (user?.token) {
+      try {
+        await logoutApi(user.token);
+      } catch (err) {
+        console.error("API logout failed:", err);
+      }
+    }
+    logout();
     navigate("/login");
   };
 
   const tabs = [
-    { id: "profile", label: "My Profile", icon: User },
+    { id: "profile", label: "My Profile", icon: UserIcon },
     { id: "orders", label: "My Orders", icon: ShoppingBag },
     { id: "addresses", label: "My Addresses", icon: MapPin },
   ];
+
+  if (!user) {
+    return (
+      <div className="bg-surface min-h-screen py-20 px-10 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Please log in to view your account.</h1>
+          <Link to="/login" className="pill-button-primary px-8 py-3 uppercase tracking-widest text-xs">Login Now</Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-surface min-h-screen py-20 px-10">
@@ -64,9 +85,9 @@ export default function AccountPage() {
           {/* Main Content Area */}
           <div className="lg:col-span-9">
             <AnimatePresence mode="wait">
-              {activeTab === "profile" && <ProfileView key="profile" />}
-              {activeTab === "orders" && <OrdersView key="orders" />}
-              {activeTab === "addresses" && <AddressesView key="addresses" />}
+              {activeTab === "profile" && <ProfileView user={user} />}
+              {activeTab === "orders" && <OrdersView />}
+              {activeTab === "addresses" && <AddressesView />}
             </AnimatePresence>
           </div>
         </div>
@@ -75,7 +96,7 @@ export default function AccountPage() {
   );
 }
 
-function ProfileView() {
+function ProfileView({ user }: { user: any }) {
   return (
     <motion.div 
       initial={{ opacity: 0, x: 20 }}
@@ -86,40 +107,49 @@ function ProfileView() {
       <div className="flex flex-col md:flex-row items-center gap-10">
          <div className="relative group">
             <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center overflow-hidden border-4 border-primary shadow-xl">
-               <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+               <div className="text-4xl font-black text-black">
+                  {user.first_name?.[0]}{user.last_name?.[0]}
+               </div>
             </div>
-            <button className="absolute bottom-0 right-0 w-10 h-10 bg-black text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
-               <Settings className="w-4 h-4" />
-            </button>
          </div>
          <div className="text-center md:text-left">
-            <h2 className="text-4xl font-black uppercase tracking-tighter">Alex Thompson</h2>
-            <p className="text-sm font-bold opacity-30 uppercase tracking-[2px]">Primary Representative • Tech Solutions Ltd</p>
+            <h2 className="text-4xl font-black uppercase tracking-tighter">{user.first_name} {user.last_name}</h2>
+            <p className="text-sm font-bold opacity-30 uppercase tracking-[2px]">{user.user_type === 'b2b' ? 'Business Partner' : 'Customer Account'} • {user.email}</p>
          </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
          <div className="space-y-2">
-            <label className="text-[10px] font-black uppercase tracking-widest opacity-30 px-6">Full Name</label>
-            <div className="w-full h-14 bg-gray-50 rounded-2xl flex items-center px-6 font-bold">Alex Thompson</div>
+            <label className="text-[10px] font-black uppercase tracking-widest opacity-30 px-6">First Name</label>
+            <div className="w-full h-14 bg-gray-50 rounded-2xl flex items-center px-6 font-bold">{user.first_name}</div>
+         </div>
+         <div className="space-y-2">
+            <label className="text-[10px] font-black uppercase tracking-widest opacity-30 px-6">Last Name</label>
+            <div className="w-full h-14 bg-gray-50 rounded-2xl flex items-center px-6 font-bold">{user.last_name}</div>
          </div>
          <div className="space-y-2">
             <label className="text-[10px] font-black uppercase tracking-widest opacity-30 px-6">Email Address</label>
-            <div className="w-full h-14 bg-gray-50 rounded-2xl flex items-center px-6 font-bold">alex@techsolutions.com</div>
+            <div className="w-full h-14 bg-gray-50 rounded-2xl flex items-center px-6 font-bold">{user.email}</div>
          </div>
-         <div className="space-y-2">
-            <label className="text-[10px] font-black uppercase tracking-widest opacity-30 px-6">Phone Number</label>
-            <div className="w-full h-14 bg-gray-50 rounded-2xl flex items-center px-6 font-bold">+44 7700 900000</div>
-         </div>
-         <div className="space-y-2">
-            <label className="text-[10px] font-black uppercase tracking-widest opacity-30 px-6">Company VAT</label>
-            <div className="w-full h-14 bg-gray-50 rounded-2xl flex items-center px-6 font-bold italic">GB 123 4567 89</div>
-         </div>
+         {user.business && (
+           <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest opacity-30 px-6">Company Name</label>
+              <div className="w-full h-14 bg-gray-50 rounded-2xl flex items-center px-6 font-bold">{user.business.company_name}</div>
+           </div>
+         )}
+         {user.business?.status && (
+           <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest opacity-30 px-6">Business Status</label>
+              <div className="w-full h-14 bg-gray-50 rounded-2xl flex items-center px-6 font-bold">
+                <span className={`px-3 py-1 rounded-full text-[10px] uppercase tracking-widest ${
+                  user.business.status === 'pending' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700'
+                }`}>
+                  {user.business.status}
+                </span>
+              </div>
+           </div>
+         )}
       </div>
-      
-      <button className="pill-button-primary px-10 py-4 uppercase tracking-[2px] text-xs h-auto">
-         Update Profile
-      </button>
     </motion.div>
   );
 }
