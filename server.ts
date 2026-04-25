@@ -16,7 +16,8 @@ async function startServer() {
   // API Proxy Route to handle login
   app.post("/api/login", express.json(), async (req, res) => {
     try {
-      const BASE_URL = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      const rawBaseUrl = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      const BASE_URL = rawBaseUrl.endsWith('/') ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
       const response = await fetch(`${BASE_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -33,7 +34,8 @@ async function startServer() {
   // API Proxy Route to handle registration
   app.post("/api/register", express.json(), async (req, res) => {
     try {
-      const BASE_URL = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      const rawBaseUrl = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      const BASE_URL = rawBaseUrl.endsWith('/') ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
       const response = await fetch(`${BASE_URL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -50,7 +52,8 @@ async function startServer() {
   // API Proxy Route to handle logout
   app.post("/api/logout", express.json(), async (req, res) => {
     try {
-      const BASE_URL = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      const rawBaseUrl = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      const BASE_URL = rawBaseUrl.endsWith('/') ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
       const authHeader = req.headers.authorization;
       
       const response = await fetch(`${BASE_URL}/logout`, {
@@ -88,11 +91,16 @@ async function startServer() {
   // API Proxy Route to bypass Mixed Content/CORS
   app.get("/api/banners", async (req, res) => {
     try {
-      const BASE_URL = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
-      console.log("Fetching banners from external API...", BASE_URL);
+      const rawBaseUrl = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      // Ensure no trailing slash to avoid double slashes
+      const BASE_URL = rawBaseUrl.endsWith('/') ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
+      
+      console.log(`Proxying request to: ${BASE_URL}/banners`);
+      
       const response = await fetch(`${BASE_URL}/banners`);
       if (!response.ok) {
-        return res.status(response.status).json({ error: response.statusText });
+        console.error(`Upstream error: ${response.status} ${response.statusText}`);
+        return res.status(response.status).json({ error: `Upstream error: ${response.statusText}` });
       }
       const data = await response.json();
       res.json(data);
@@ -100,6 +108,15 @@ async function startServer() {
       console.error("Proxy error:", error);
       res.status(500).json({ error: "Failed to fetch from external API" });
     }
+  });
+
+  // Health check for deployment monitoring
+  app.get("/api/health", (req, res) => {
+    res.json({ 
+      status: "ok", 
+      env: process.env.NODE_ENV,
+      proxy_target: process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1'
+    });
   });
 
   // Vite middleware for development
