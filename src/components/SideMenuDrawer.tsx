@@ -64,7 +64,7 @@ export default function SideMenuDrawer({ isOpen, onClose }: SideMenuDrawerProps)
                           <div className="text-sm font-black uppercase tracking-widest leading-none mb-1 text-black">
                             {user?.first_name || 'User'}
                           </div>
-                          <Link to="/account" onClick={onClose} className="text-[10px] font-bold opacity-40 hover:opacity-100 transition-opacity uppercase tracking-widest text-black">My Account</Link>
+                          <Link to="/account" onClick={onClose} className="text-[10px] font-bold opacity-40 hover:opacity-100 transition-opacity uppercase tracking-widest text-black">Account</Link>
                         </div>
                       </div>
                       <button onClick={handleLogout} className="p-3 hover:bg-red-50 hover:text-red-500 rounded-xl transition-all">

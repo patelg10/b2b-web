@@ -89,6 +89,7 @@ async function startServer() {
   app.get("/api/banners", async (req, res) => {
     try {
       const BASE_URL = process.env.VITE_API_BASE_URL || 'http://18.133.35.178/api/v1';
+      console.log("Fetching banners from external API...", BASE_URL);
       const response = await fetch(`${BASE_URL}/banners`);
       if (!response.ok) {
         return res.status(response.status).json({ error: response.statusText });

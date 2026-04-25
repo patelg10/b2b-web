@@ -32,7 +32,7 @@ export default function Header() {
               <div className="w-8 h-8 bg-primary text-black rounded-full flex items-center justify-center text-[10px] font-black group-hover:scale-110 transition-transform">
                 {user?.first_name?.[0] || 'U'}{user?.last_name?.[0] || ''}
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-white">My Account</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white">Account</span>
             </Link>
           ) : (
             <div className="flex items-center gap-4">

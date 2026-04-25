@@ -16,7 +16,7 @@ const FOOTER_LINKS = {
     { label: "Terms And Conditions", href: "/terms" }
   ],
   services: [
-    { label: "My Account", href: "/login" },
+    { label: "Account", href: "/login" },
     { label: "LCD Buyback", href: "/buyback" },
     { label: "Pre-Owned Devices", href: "/pre-owned" },
     { label: "Shipping", href: "/shipping" },
